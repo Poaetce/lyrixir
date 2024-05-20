@@ -1,5 +1,7 @@
 import enum
 
+RESET: str = '\x1b[0m' 
+
 
 class Alignment(enum.Enum):
     LEFT = 1
@@ -27,7 +29,6 @@ class Color(enum.Enum):
 
 
 class Style(enum.Enum):
-    REGULAR = 0
     BOLD = 1
     ITALIC = 3
     UNDERLINE = 4
