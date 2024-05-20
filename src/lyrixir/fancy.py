@@ -9,7 +9,7 @@ class Alignment(enum.Enum):
     RIGHT: int = 3
 
 
-class Color(enum.Enum):
+class Color():
     BLACK: int = 30
     RED: int = 31
     GREEN: int = 32
@@ -28,8 +28,14 @@ class Color(enum.Enum):
     LIGHT_CYAN: int = 96
 
 
-class Style(enum.Enum):
+class Style():
     BOLD: int = 1
     ITALIC: int = 3
     UNDERLINE: int = 4
     STRIKETHROUGH: int = 9
+
+
+def fancy_string(string: str, color: int, styles: list[int]) -> str:
+    escape_code: str = f'\x1b[{color}{''.join(f';{style}' for style in styles)}m'
+    
+    return f'{escape_code}{string}{RESET}'
