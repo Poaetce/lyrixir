@@ -1,4 +1,5 @@
 import enum
+import os
 
 RESET: str = '\x1b[0m' 
 
@@ -39,3 +40,18 @@ def fancy_string(string: str, color: int, styles: list[int]) -> str:
     escape_code: str = f'\x1b[{color}{''.join(f';{style}' for style in styles)}m'
     
     return f'{escape_code}{string}{RESET}'
+
+
+def fancy_print(string: str, alignment: Alignment, color: int, styles: list[int]) -> None:
+    terminal_width: int = os.get_terminal_size().columns
+
+    for line in string.splitlines():
+        fancy_line: str = fancy_string(line, color, styles)
+
+        match alignment:
+            case Alignment.LEFT:
+                print(f'{fancy_line : <{terminal_width}}')
+            case Alignment.CENTER:
+                print(f'{fancy_line : ^{terminal_width}}')
+            case Alignment.RIGHT:
+                print(f'{fancy_line : >{terminal_width}}')
