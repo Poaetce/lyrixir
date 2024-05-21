@@ -5,6 +5,14 @@ class Song:
         self.title: str = title
         self.lyrics: str = lyrics
 
+    def form(self) -> str:
+        return f'{self.artist}\0{self.title}\0{self.lyrics}'
+
+    def compress(self) -> bytes:
+        import zlib
+
+        return zlib.compress(self.form().encode())
+
 
 def get_song(reference: str) -> Song | None:
     import requests
