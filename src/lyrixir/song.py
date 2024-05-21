@@ -1,7 +1,7 @@
 class Song:
-    def __init__(self, artist: str, song: str, lyrics: str) -> None:
+    def __init__(self, artist: str, title: str, lyrics: str) -> None:
         self.artist: str = artist
-        self.song: str = song
+        self.title: str = title
         self.lyrics: str = lyrics
 
 
@@ -14,12 +14,12 @@ def get_song(reference: str) -> Song | None:
     response: requests.Response = requests.get(url)
 
     if response.status_code != 200:
-        return
+        return None
 
     page: bs4.BeautifulSoup = bs4.BeautifulSoup(response.content, 'html.parser')
 
     lyrics: str = page.find('div', attrs = {'class': None, 'id': None}).get_text().strip()
     artist: str = page.find('b').get_text().rsplit(' ', 1)[0]
-    song: str = page.find_all('b')[1].get_text().strip('"')
+    title: str = page.find_all('b')[1].get_text().strip('"')
 
-    return Song(artist, song, lyrics)
+    return Song(artist, title, lyrics)
