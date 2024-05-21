@@ -1,5 +1,6 @@
 class Song:
-    def __init__(self, artist: str, title: str, lyrics: str) -> None:
+    def __init__(self, reference: str, artist: str, title: str, lyrics: str) -> None:
+        self.reference: str = reference
         self.artist: str = artist
         self.title: str = title
         self.lyrics: str = lyrics
@@ -22,4 +23,4 @@ def get_song(reference: str) -> Song | None:
     artist: str = page.find('b').get_text().rsplit(' ', 1)[0]
     title: str = page.find_all('b')[1].get_text().strip('"')
 
-    return Song(artist, title, lyrics)
+    return Song(reference, artist, title, lyrics)
