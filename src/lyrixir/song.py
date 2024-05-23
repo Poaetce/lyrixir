@@ -19,7 +19,7 @@ def get_song(reference: str) -> Song | None:
     import bs4
 
     url: str = f'https://www.azlyrics.com/lyrics/{reference}.html'
-    
+
     response: requests.Response = requests.get(url)
 
     if response.status_code != 200:

@@ -1,7 +1,7 @@
 import enum
 import os
 
-RESET: str = '\x1b[0m' 
+RESET: str = '\x1b[0m'
 
 
 class Alignment(enum.Enum):
@@ -38,7 +38,7 @@ class Style():
 
 def fancy_string(string: str, color: int, styles: list[int]) -> str:
     escape_code: str = f'\x1b[{color}{''.join(f';{style}' for style in styles)}m'
-    
+
     return f'{escape_code}{string}{RESET}'
 
 
