@@ -6,8 +6,8 @@ config: str
 
 match platform.system():
     case 'Linux':
-        data = '~/.local/share/lyrixir'
-        config = '~/.config/lyrixir'
+        data = f'{os.getenv('HOME')}/.local/share/lyrixir'
+        config = f'{os.getenv('HOME')}/.config/lyrixir'
 
     case 'Windows':
         data = f'{os.getenv('APPDATA')}\\lyrixir-data'
