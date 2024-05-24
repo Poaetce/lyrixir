@@ -16,10 +16,10 @@ configuration: dict = {
     },
 }
 
-config_file = os.path.join(paths.config, 'lyrixir.toml')
+file_name = os.path.join(paths.config, 'lyrixir.toml')
 
-if os.path.exists(config_file):
-    with open(config_file, 'rb') as file:
+if os.path.exists(file_name):
+    with open(file_name, 'rb') as file:
         user_configuration: dict = tomllib.load(file)
         for table in user_configuration:
             configuration[table].update(user_configuration[table])
