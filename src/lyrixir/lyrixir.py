@@ -6,11 +6,11 @@ def main() -> None:
     if arguments:
         command: str = arguments[0]
         match command:
-            case 'add': pass
-            case 'remove': pass
+            case 'add': add()
+            case 'remove': remove()
             case _: pass
     else:
-        pass
+        lyrixir()
 
 
 def add() -> None:
