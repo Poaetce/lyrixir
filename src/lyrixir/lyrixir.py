@@ -1,8 +1,20 @@
 import sys
+import functools
 
 from . import fancy
 from . import song
 from . import config
+
+print_error: functools.partial = functools.partial(
+    fancy.fancy_print,
+    color = fancy.Color.RED,
+    styles = [fancy.Style.BOLD],
+    )
+print_success: functools.partial = functools.partial(
+    fancy.fancy_print,
+    color = fancy.Color.GREEN,
+    styles = [fancy.Style.BOLD],
+    )
 
 
 def main() -> None:
@@ -28,24 +40,13 @@ def add(arguments: list[str]) -> None:
                 current_song.save()
                 config.add_reference_list(song_reference)
 
-                fancy.fancy_print(
-                    f"saved {current_song.title} by {current_song.artist}",
-                    color = fancy.Color.GREEN,
-                    styles = [fancy.Style.BOLD],
-                )
+                print_success(f"saved {current_song.title} by {current_song.artist}")
+
             else:
-                fancy.fancy_print(
-                    f"reference {song_reference} unavailable",
-                    color = fancy.Color.RED,
-                    styles = [fancy.Style.BOLD],
-                )
+                print_error(f"reference {song_reference} unavailable")
 
     else:
-        fancy.fancy_print(
-            "no song reference entered",
-            color = fancy.Color.RED,
-            styles = [fancy.Style.BOLD],
-        )
+        print_error("no song reference entered")
 
 
 def remove() -> None:
