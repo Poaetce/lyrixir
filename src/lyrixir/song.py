@@ -13,6 +13,17 @@ class Song:
 
         return zlib.compress(self.form().encode())
 
+    def save(self) -> None:
+        import os
+
+        from . import paths
+
+        file_name: str = os.path.join(paths.data, *self.reference.split('/'))
+        os.makedirs(os.path.dirname(file_name), exist_ok = True)
+
+        with open(file_name, 'wb') as file:
+            file.write(self.compress())
+
 
 def get_song(reference: str) -> Song | None:
     import requests
