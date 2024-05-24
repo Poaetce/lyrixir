@@ -11,3 +11,15 @@ def main() -> None:
             case _: pass
     else:
         pass
+
+
+def add() -> None:
+    pass
+
+
+def remove() -> None:
+    pass
+
+
+def lyrixir() -> None:
+    pass
