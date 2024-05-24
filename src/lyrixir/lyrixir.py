@@ -46,9 +46,9 @@ def add(arguments: list[str]) -> None:
                     current_song.save()
                     config.add_reference_list(song_reference)
 
-                    print_success(f"saved {current_song.title} by {current_song.artist}")
+                    print_success(f"added {current_song.title} by {current_song.artist}")
                 else:
-                    print_error(f"reference {song_reference} unavailable")
+                    print_error(f"{song_reference} is unavailable")
 
     else:
         print_error("no song reference entered")
