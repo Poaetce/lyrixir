@@ -42,7 +42,12 @@ def fancy_string(string: str, color: int, styles: list[int]) -> str:
     return f'{escape_code}{string}{RESET}'
 
 
-def fancy_print(string: str, alignment: Alignment, color: int, styles: list[int]) -> None:
+def fancy_print(
+        string: str,
+        alignment: Alignment = Alignment.LEFT,
+        color: int = Color.BLACK,
+        styles: list[int] = [],
+    ) -> None:
     terminal_width: int = os.get_terminal_size().columns
 
     for line in string.splitlines():
