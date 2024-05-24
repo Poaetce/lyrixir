@@ -38,7 +38,6 @@ def add(arguments: list[str]) -> None:
 
             if song_reference in reference_list:
                 print_success(f"{song_reference} is already added")
-
             else:
                 current_song: song.Song | None = song.get_song(song_reference)
 
