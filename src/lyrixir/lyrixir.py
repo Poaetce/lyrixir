@@ -34,16 +34,21 @@ def add(arguments: list[str]) -> None:
         song_references: list[str] = arguments[-1].split(',')
 
         for song_reference in song_references:
-            current_song: song.Song | None = song.get_song(song_reference)
+            reference_list: list[str] = config.read_reference_list()
 
-            if current_song:
-                current_song.save()
-                config.add_reference_list(song_reference)
-
-                print_success(f"saved {current_song.title} by {current_song.artist}")
+            if song_reference in reference_list:
+                print_success(f"{song_reference} is already added")
 
             else:
-                print_error(f"reference {song_reference} unavailable")
+                current_song: song.Song | None = song.get_song(song_reference)
+
+                if current_song:
+                    current_song.save()
+                    config.add_reference_list(song_reference)
+
+                    print_success(f"saved {current_song.title} by {current_song.artist}")
+                else:
+                    print_error(f"reference {song_reference} unavailable")
 
     else:
         print_error("no song reference entered")
