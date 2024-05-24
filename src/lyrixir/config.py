@@ -10,7 +10,7 @@ configuration: dict = {
         'variation': 'bold',
     },
     'info': {
-        'visible': ['artist', 'song',],
+        'visible': ['artist', 'song'],
         'alignment': 'right',
         'variation': 'none',
     },
