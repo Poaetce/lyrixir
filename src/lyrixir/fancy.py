@@ -1,5 +1,6 @@
 import enum
 import os
+import functools
 
 RESET: str = '\x1b[0m'
 
@@ -60,3 +61,15 @@ def fancy_print(
                 print(f'{fancy_line : ^{terminal_width}}')
             case Alignment.RIGHT:
                 print(f'{fancy_line : >{terminal_width}}')
+
+
+print_error: functools.partial = functools.partial(
+    fancy_print,
+    color = Color.RED,
+    styles = [Style.BOLD],
+    )
+print_success: functools.partial = functools.partial(
+    fancy_print,
+    color = Color.GREEN,
+    styles = [Style.BOLD],
+    )

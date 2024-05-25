@@ -1,20 +1,8 @@
 import sys
-import functools
 
 from . import fancy
 from . import song
 from . import config
-
-print_error: functools.partial = functools.partial(
-    fancy.fancy_print,
-    color = fancy.Color.RED,
-    styles = [fancy.Style.BOLD],
-    )
-print_success: functools.partial = functools.partial(
-    fancy.fancy_print,
-    color = fancy.Color.GREEN,
-    styles = [fancy.Style.BOLD],
-    )
 
 
 def main() -> None:
@@ -37,7 +25,7 @@ def add(arguments: list[str]) -> None:
             reference_list: list[str] = config.read_reference_list()
 
             if song_reference in reference_list:
-                print_success(f"{song_reference} is already added")
+                fancy.print_success(f"{song_reference} is already added")
             else:
                 current_song: song.Song | None = song.get_song(song_reference)
 
@@ -45,12 +33,12 @@ def add(arguments: list[str]) -> None:
                     current_song.save()
                     config.add_reference_list(song_reference)
 
-                    print_success(f"added {current_song.title} by {current_song.artist}")
+                    fancy.print_success(f"added {current_song.title} by {current_song.artist}")
                 else:
-                    print_error(f"{song_reference} is unavailable")
+                    fancy.print_error(f"{song_reference} is unavailable")
 
     else:
-        print_error("no song reference entered")
+        fancy.print_error("no song reference entered")
 
 
 def remove() -> None:
