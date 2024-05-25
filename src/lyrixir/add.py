@@ -3,25 +3,32 @@ from . import fancy
 from . import songs
 
 
+def add_song(reference: str) -> None:
+    song: songs.Song | None = songs.get_song(reference)
+
+    if song:
+        song.save()
+        config.add_reference_list(reference)
+
+        fancy.print_success(f"added {song.title} by {song.artist}")
+    else:
+        fancy.print_error(f"{reference} is unavailable")
+
+
+def add_songs(references: list[str]) -> None:
+    reference_list: list[str] = config.read_reference_list()
+
+    for song_reference in references:
+        if song_reference in reference_list:
+            fancy.print_success(f"{song_reference} is already added")
+        else:
+            add_song(song_reference)
+
+
 def main(arguments: list[str]) -> None:
     if arguments:
         song_references: list[str] = arguments[-1].split(',')
 
-        for song_reference in song_references:
-            reference_list: list[str] = config.read_reference_list()
-
-            if song_reference in reference_list:
-                fancy.print_success(f"{song_reference} is already added")
-            else:
-                current_song: songs.Song | None = songs.get_song(song_reference)
-
-                if current_song:
-                    current_song.save()
-                    config.add_reference_list(song_reference)
-
-                    fancy.print_success(f"added {current_song.title} by {current_song.artist}")
-                else:
-                    fancy.print_error(f"{song_reference} is unavailable")
-
+        add_songs(song_references)
     else:
         fancy.print_error("no song reference entered")
