@@ -1,18 +1,23 @@
 import sys
 
-from . import lyrixir
-from . import add
-
 
 def main() -> None:
     arguments: list[str] = sys.argv[1:]
     if arguments:
         command: str = arguments[0]
         match command:
-            case 'add': add.main(arguments[1:])
-            case 'remove': pass
-            case _: pass
+            case 'add':
+                from . import add
+                add.main(arguments[1:])
+
+            case 'remove':
+                pass
+
+            case _:
+                pass
+
     else:
+        from . import lyrixir
         lyrixir.main()
 
 
