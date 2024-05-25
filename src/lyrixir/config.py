@@ -37,7 +37,7 @@ def read_reference_list() -> list[str]:
         return []
 
 
-def add_reference_list(reference: str) -> None:
+def add_to_reference_list(reference: str) -> None:
     os.makedirs(os.path.dirname(list_file_name), exist_ok = True)
     with open(list_file_name, 'a') as file:
         file.write(f'{reference}\n')

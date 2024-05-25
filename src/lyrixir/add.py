@@ -8,7 +8,7 @@ def add_song(reference: str) -> None:
 
     if song:
         song.save()
-        config.add_reference_list(reference)
+        config.add_to_reference_list(reference)
 
         fancy.print_success(f"added {song.title} by {song.artist}")
     else:
