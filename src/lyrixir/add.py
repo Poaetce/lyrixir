@@ -1,6 +1,6 @@
 from . import config
 from . import fancy
-from . import song
+from . import songs
 
 
 def main(arguments: list[str]) -> None:
@@ -13,7 +13,7 @@ def main(arguments: list[str]) -> None:
             if song_reference in reference_list:
                 fancy.print_success(f"{song_reference} is already added")
             else:
-                current_song: song.Song | None = song.get_song(song_reference)
+                current_song: songs.Song | None = songs.get_song(song_reference)
 
                 if current_song:
                     current_song.save()
