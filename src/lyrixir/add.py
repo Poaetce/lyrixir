@@ -4,15 +4,18 @@ from . import songs
 
 
 def add_song(reference: str) -> None:
-    song: songs.Song | None = songs.get_song(reference)
-
-    if song:
-        song.save()
-        config.add_to_reference_list(reference)
-
-        fancy.print_success(f"added {song.title} by {song.artist}")
+    try:
+        song: songs.Song | None = songs.get_song(reference)
+    except:
+        fancy.print_error(f"unable to connect")
     else:
-        fancy.print_error(f"{reference} is unavailable")
+        if song:
+            song.save()
+            config.add_to_reference_list(reference)
+
+            fancy.print_success(f"added {song.title} by {song.artist}")
+        else:
+            fancy.print_error(f"{reference} is unavailable")
 
 
 def add_songs(references: list[str]) -> None:
