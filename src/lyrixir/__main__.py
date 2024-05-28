@@ -7,12 +7,12 @@ def main() -> None:
         command: str = arguments[0]
         match command:
             case 'add':
-                from . import add
-                add.main(arguments[1:])
+                from . import lyrixir_add
+                lyrixir_add.main(arguments[1:])
 
             case 'list':
-                from . import list
-                list.main(arguments[1:])
+                from . import lyrixir_list
+                lyrixir_list.main(arguments[1:])
 
             case 'remove':
                 pass
