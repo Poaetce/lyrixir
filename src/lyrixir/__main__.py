@@ -10,6 +10,10 @@ def main() -> None:
                 from . import add
                 add.main(arguments[1:])
 
+            case 'list':
+                from . import list
+                list.main()
+
             case 'remove':
                 pass
 
