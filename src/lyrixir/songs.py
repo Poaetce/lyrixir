@@ -44,3 +44,22 @@ def get_song(reference: str) -> Song | None:
 
     else:
         return None
+
+
+def open_song(reference: str) -> Song | None:
+    import os
+    import zlib
+
+    from . import paths
+
+    file_name: str = os.path.join(paths.data, *reference.split('/'))
+
+    if os.path.exists(file_name):
+        with open(file_name, 'rb') as file:
+            data: bytes = zlib.decompress(file.read())
+            contents: list[str] = data.decode().split('\0')
+
+        return Song(reference, *contents)
+
+    else:
+        return None
