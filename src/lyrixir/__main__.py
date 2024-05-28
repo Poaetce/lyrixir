@@ -12,7 +12,7 @@ def main() -> None:
 
             case 'list':
                 from . import list
-                list.main()
+                list.main(arguments[1:])
 
             case 'remove':
                 pass

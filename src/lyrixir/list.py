@@ -14,7 +14,17 @@ def list_songs(references: list[str]) -> None:
         print_song_information(reference)
 
 
-def main() -> None:
-    references: list[str] = config.read_reference_list()
+def main(arguments: list[str]) -> None:
+    references: list[str]
+
+    if arguments:
+        references = []
+        for reference in config.read_reference_list():
+            artist: str = reference.split('/')[0]
+            if artist in arguments:
+                references.append(reference)
+
+    else:
+        references = config.read_reference_list()
 
     list_songs(references)
