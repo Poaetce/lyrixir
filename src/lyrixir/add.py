@@ -30,8 +30,6 @@ def add_songs(references: list[str]) -> None:
 
 def main(arguments: list[str]) -> None:
     if arguments:
-        song_references: list[str] = arguments[-1].split(',')
-
-        add_songs(song_references)
+        add_songs(arguments)
     else:
         fancy.print_error("no song reference entered")
