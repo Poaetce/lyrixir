@@ -67,9 +67,14 @@ print_error: functools.partial = functools.partial(
     fancy_print,
     color = Color.RED,
     styles = [Style.BOLD],
-    )
+)
 print_success: functools.partial = functools.partial(
     fancy_print,
     color = Color.GREEN,
     styles = [Style.BOLD],
-    )
+)
+print_neutral: functools.partial = functools.partial(
+    fancy_print,
+    color = Color.BLACK,
+    styles = [Style.BOLD],
+)
