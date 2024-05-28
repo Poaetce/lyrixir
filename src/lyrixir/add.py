@@ -23,7 +23,7 @@ def add_songs(references: list[str]) -> None:
 
     for song_reference in references:
         if song_reference in reference_list:
-            fancy.print_success(f"{song_reference} is already added")
+            fancy.print_neutral(f"{song_reference} is already added")
         else:
             add_song(song_reference)
 
