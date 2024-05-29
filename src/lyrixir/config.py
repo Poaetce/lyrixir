@@ -8,7 +8,7 @@ config_file_name = os.path.join(paths.config, 'lyrixir.toml')
 
 configuration: dict = {
     'lyrics': {
-        'scale': 'line',
+        'scale': 'stanza',
         'alignment': 'center',
         'color': 'black',
         'styles': ['bold'],
