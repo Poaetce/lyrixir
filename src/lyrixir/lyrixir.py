@@ -14,7 +14,7 @@ def print_section(section: str, content: str) -> None:
 
 
 def print_song(song: songs.Song) -> None:
-    chunks: str
+    chunks: list[str]
 
     match config.configuration['lyrics']['scale']:
         case 'line':
@@ -45,7 +45,7 @@ def pick_song() -> songs.Song | None:
 
 
 def main() -> None:
-    song: song.Song | None = pick_song()
+    song: songs.Song | None = pick_song()
 
     while not song:
         song = pick_song()
