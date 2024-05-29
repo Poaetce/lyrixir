@@ -20,7 +20,7 @@ def print_song(song: songs.Song) -> None:
         case 'line':
             chunks = [line for line in song.lyrics.splitlines() if line]
         case 'stanza':
-            chunks = song.lyrics.split('/n/n')
+            chunks = song.lyrics.split('\n\n')
         case 'song':
             chunks = [song.lyrics]
 
