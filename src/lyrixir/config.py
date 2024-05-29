@@ -10,14 +10,14 @@ configuration: dict = {
     'lyrics': {
         'scale': 'line',
         'alignment': 'center',
-        'color': 'black'
-        'style': ['bold'],
+        'color': 'black',
+        'styles': ['bold'],
     },
     'info': {
         'visible': ['artist', 'title'],
         'alignment': 'right',
-        'color': 'black'
-        'style': ['none'],
+        'color': 'black',
+        'styles': ['none'],
     },
 }
 
