@@ -27,7 +27,7 @@ def print_song(song: songs.Song) -> None:
     lyrics: str = random.choice(chunks)
     print_section('lyrics', lyrics)
 
-    for element in config.configuration['info']['visible']:
+    for element in config.configuration['info']['include']:
         information: str
         match element:
             case 'artist': information = song.artist

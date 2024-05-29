@@ -14,7 +14,7 @@ configuration: dict = {
         'styles': ['bold'],
     },
     'info': {
-        'visible': ['artist', 'title'],
+        'include': ['artist', 'title'],
         'alignment': 'right',
         'color': 'black',
         'styles': ['none'],
