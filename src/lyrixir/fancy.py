@@ -63,6 +63,48 @@ def fancy_print(
                 print(f'{fancy_line : >{terminal_width}}')
 
 
+def prepare_print(alignment: str, color: str, styles: list[str]) -> functools.partial:
+    print_alignment: Alignment
+    match alignment:
+        case 'left': print_alignment = Alignment.LEFT
+        case 'center': print_alignment = Alignment.CENTER
+        case 'right': print_alignment = Alignment.RIGHT
+
+    print_color: int
+    match color:
+        case 'black': print_color = Color.BLACK
+        case 'red': print_color = Color.RED
+        case 'green': print_color = Color.GREEN
+        case 'yellow': print_color = Color.YELLOW
+        case 'blue': print_color = Color.BLUE
+        case 'magenta': print_color = Color.MAGENTA
+        case 'cyan': print_color = Color.CYAN
+        case 'light gray': print_color = Color.LIGHT_GRAY
+        case 'default': print_color = Color.DEFAULT
+        case 'dark gray': print_color = Color.DARK_GRAY
+        case 'light red': print_color = Color.LIGHT_RED
+        case 'light green': print_color = Color.LIGHT_GREEN
+        case 'light yellow': print_color = Color.LIGHT_YELLOW
+        case 'light blue': print_color = Color.LIGHT_BLUE
+        case 'light magenta': print_color = Color.LIGHT_MAGENTA
+        case 'light cyan': print_color = Color.LIGHT_CYAN
+
+    print_styles: list[int] = []
+    for style in styles:
+        match style:
+            case 'bold': print_styles.append(Style.BOLD)
+            case 'italic': print_styles.append(Style.ITALIC)
+            case 'underline': print_styles.append(Style.UNDERLINE)
+            case 'strikethrough': print_styles.append(Style.STRIKETHROUGH)
+
+    return functools.partial(
+        fancy_print,
+        alignment = print_alignment,
+        color = print_color,
+        styles = print_styles,
+    )
+
+
 print_error: functools.partial = functools.partial(
     fancy_print,
     color = Color.RED,
