@@ -4,6 +4,7 @@ import platform
 data: str
 config: str
 
+# gets the required file paths according to the operating system
 match platform.system():
     case 'Linux':
         data = f'{os.getenv('HOME')}/.local/share/lyrixir'

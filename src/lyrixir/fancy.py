@@ -1,15 +1,18 @@
 import os
 import functools
 
+# ANSI escape code for reset
 RESET: str = '\x1b[0m'
 
 
+# enumeration for alignments
 class Alignment():
     LEFT: int = 1
     CENTER: int = 2
     RIGHT: int = 3
 
 
+# ANSI escape values for colours
 class Color():
     BLACK: int = 30
     RED: int = 31
@@ -29,6 +32,7 @@ class Color():
     LIGHT_CYAN: int = 96
 
 
+# ANSI escape values for styles
 class Style():
     BOLD: int = 1
     ITALIC: int = 3
@@ -37,8 +41,10 @@ class Style():
 
 
 def fancy_string(string: str, color: int, styles: list[int]) -> str:
+    # generates the ANSI escape code
     escape_code: str = f'\x1b[{color}{''.join(f';{style}' for style in styles)}m'
 
+    # returns the string with the escape code
     return f'{escape_code}{string}{RESET}'
 
 
@@ -48,11 +54,15 @@ def fancy_print(
         color: int = Color.BLACK,
         styles: list[int] = [],
     ) -> None:
+    # gets the width of the terminal
     terminal_width: int = os.get_terminal_size().columns
 
+    # loops for each line of the string
     for line in string.splitlines():
+        # gets the fany string for the current line
         fancy_line: str = fancy_string(line, color, styles)
 
+        # prints the line in alignment
         match alignment:
             case Alignment.LEFT:
                 print(f'{fancy_line : <{terminal_width}}')
@@ -63,6 +73,7 @@ def fancy_print(
 
 
 def prepare_print(alignment: str, color: str, styles: list[str]) -> functools.partial:
+    # matches respective characteristic in strings to respected enumerations or values
     print_alignment: int = Alignment.LEFT
     match alignment:
         case 'left': print_alignment = Alignment.LEFT
@@ -96,6 +107,7 @@ def prepare_print(alignment: str, color: str, styles: list[str]) -> functools.pa
             case 'underline': print_styles.append(Style.UNDERLINE)
             case 'strikethrough': print_styles.append(Style.STRIKETHROUGH)
 
+    # returns a partial function according to the charateristics
     return functools.partial(
         fancy_print,
         alignment = print_alignment,
@@ -104,16 +116,21 @@ def prepare_print(alignment: str, color: str, styles: list[str]) -> functools.pa
     )
 
 
+# partial function for printing error messages
 print_error: functools.partial = functools.partial(
     fancy_print,
     color = Color.RED,
     styles = [Style.BOLD],
 )
+
+# partial function for printing success messages
 print_success: functools.partial = functools.partial(
     fancy_print,
     color = Color.GREEN,
     styles = [Style.BOLD],
 )
+
+# partial function for printing neutral messages
 print_neutral: functools.partial = functools.partial(
     fancy_print,
     color = Color.BLACK,
