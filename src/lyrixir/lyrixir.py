@@ -28,7 +28,7 @@ def print_song(song: songs.Song) -> None:
         lyrics: str = random.choice(chunks)
         print_section('lyrics', lyrics)
     else:
-        fancy.print_error("unrecognized scale in configuration")
+        fancy.print_error("unrecognized scale in config file")
 
     for element in config.configuration['info']['include']:
         information: str = ''
@@ -39,7 +39,7 @@ def print_song(song: songs.Song) -> None:
         if information:
             print_section('info', information)
         else:
-            fancy.print_error("unrecognized include in configuration")
+            fancy.print_error("unrecognized include in config file")
 
 
 def pick_song() -> songs.Song | None:
