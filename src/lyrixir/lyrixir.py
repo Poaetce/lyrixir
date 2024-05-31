@@ -14,7 +14,7 @@ def print_section(section: str, content: str) -> None:
 
 
 def print_song(song: songs.Song) -> None:
-    chunks: list[str]
+    chunks: list[str] = []
 
     match config.configuration['lyrics']['scale']:
         case 'line':
@@ -24,16 +24,22 @@ def print_song(song: songs.Song) -> None:
         case 'song':
             chunks = [song.lyrics]
 
-    lyrics: str = random.choice(chunks)
-    print_section('lyrics', lyrics)
+    if chunks:
+        lyrics: str = random.choice(chunks)
+        print_section('lyrics', lyrics)
+    else:
+        fancy.print_error("unrecognized scale in configuration")
 
     for element in config.configuration['info']['include']:
-        information: str
+        information: str = ''
         match element:
             case 'artist': information = song.artist
             case 'title': information = song.title
 
-        print_section('info', information)
+        if information:
+            print_section('info', information)
+        else:
+            fancy.print_error("unrecognized include in configuration")
 
 
 def pick_song() -> songs.Song | None:
