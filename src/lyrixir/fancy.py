@@ -63,13 +63,13 @@ def fancy_print(
 
 
 def prepare_print(alignment: str, color: str, styles: list[str]) -> functools.partial:
-    print_alignment: int
+    print_alignment: int = Alignment.LEFT
     match alignment:
         case 'left': print_alignment = Alignment.LEFT
         case 'center': print_alignment = Alignment.CENTER
         case 'right': print_alignment = Alignment.RIGHT
 
-    print_color: int
+    print_color: int = Color.BLACK
     match color:
         case 'black': print_color = Color.BLACK
         case 'red': print_color = Color.RED
