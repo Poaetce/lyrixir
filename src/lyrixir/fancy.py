@@ -1,11 +1,10 @@
-import enum
 import os
 import functools
 
 RESET: str = '\x1b[0m'
 
 
-class Alignment(enum.Enum):
+class Alignment():
     LEFT: int = 1
     CENTER: int = 2
     RIGHT: int = 3
@@ -45,7 +44,7 @@ def fancy_string(string: str, color: int, styles: list[int]) -> str:
 
 def fancy_print(
         string: str,
-        alignment: Alignment = Alignment.LEFT,
+        alignment: int = Alignment.LEFT,
         color: int = Color.BLACK,
         styles: list[int] = [],
     ) -> None:
@@ -64,7 +63,7 @@ def fancy_print(
 
 
 def prepare_print(alignment: str, color: str, styles: list[str]) -> functools.partial:
-    print_alignment: Alignment
+    print_alignment: int
     match alignment:
         case 'left': print_alignment = Alignment.LEFT
         case 'center': print_alignment = Alignment.CENTER
