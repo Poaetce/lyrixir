@@ -1,3 +1,5 @@
+from typing import Optional
+
 from . import config
 from . import fancy
 from . import songs
@@ -6,7 +8,7 @@ from . import songs
 def add_song(reference: str) -> None:
     # tries to get the song from the reference
     try:
-        song: songs.Song | None = songs.get_song(reference)
+        song: Optional[songs.Song] = songs.get_song(reference)
 
     # gives error if failed
     except:

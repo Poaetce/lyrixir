@@ -1,3 +1,5 @@
+from typing import Optional
+
 import random
 
 from . import config
@@ -51,7 +53,7 @@ def print_song(song: songs.Song) -> None:
             fancy.print_error("unrecognized include in config file")
 
 
-def pick_song() -> songs.Song | None:
+def pick_song() -> Optional[songs.Song]:
     # gets the reference list
     reference_list: list[str] = config.read_reference_list()
 
@@ -64,7 +66,7 @@ def pick_song() -> songs.Song | None:
 
 def main() -> None:
     # gets a random song
-    song: songs.Song | None = pick_song()
+    song: Optional[songs.Song] = pick_song()
 
     # keep trying if it fails
     while not song:

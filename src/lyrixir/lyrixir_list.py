@@ -1,3 +1,5 @@
+from typing import Optional
+
 from . import config
 from . import fancy
 from . import songs
@@ -5,7 +7,7 @@ from . import songs
 
 def print_song_information(reference: str) -> None:
     # gets the song from the reference and prints its information
-    song: songs.Song | None = songs.open_song(reference)
+    song: Optional[songs.Song] = songs.open_song(reference)
     if song:
         fancy.print_neutral(f"{song.title} - {song.artist}")
 

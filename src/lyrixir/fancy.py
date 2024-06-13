@@ -1,3 +1,5 @@
+from typing import Callable
+
 import os
 import functools
 
@@ -72,7 +74,7 @@ def fancy_print(
                 print(f'{fancy_line : >{terminal_width}}')
 
 
-def prepare_print(alignment: str, color: str, styles: list[str]) -> functools.partial:
+def prepare_print(alignment: str, color: str, styles: list[str]) -> Callable:
     # matches respective characteristic in strings to respected enumerations or values
     print_alignment: int = Alignment.LEFT
     match alignment:
@@ -117,21 +119,21 @@ def prepare_print(alignment: str, color: str, styles: list[str]) -> functools.pa
 
 
 # partial function for printing error messages
-print_error: functools.partial = functools.partial(
+print_error: Callable = functools.partial(
     fancy_print,
     color = Color.RED,
     styles = [Style.BOLD],
 )
 
 # partial function for printing success messages
-print_success: functools.partial = functools.partial(
+print_success: Callable = functools.partial(
     fancy_print,
     color = Color.GREEN,
     styles = [Style.BOLD],
 )
 
 # partial function for printing neutral messages
-print_neutral: functools.partial = functools.partial(
+print_neutral: Callable = functools.partial(
     fancy_print,
     color = Color.BLACK,
     styles = [Style.BOLD],

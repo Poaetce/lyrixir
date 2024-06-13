@@ -1,3 +1,5 @@
+from typing import Optional
+
 class Song:
     def __init__(self, reference: str, artist: str, title: str, lyrics: str) -> None:
         self.reference: str = reference
@@ -29,7 +31,7 @@ class Song:
             file.write(self.compress())
 
 
-def get_song(reference: str) -> Song | None:
+def get_song(reference: str) -> Optional[Song]:
     import requests
     import bs4
 
@@ -56,7 +58,7 @@ def get_song(reference: str) -> Song | None:
         return None
 
 
-def open_song(reference: str) -> Song | None:
+def open_song(reference: str) -> Optional[Song]:
     import os
     import zlib
 
