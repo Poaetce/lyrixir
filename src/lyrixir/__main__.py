@@ -21,7 +21,8 @@ def main() -> None:
                 lyrixir_list.main(arguments[1:])
 
             case 'remove':
-                pass
+                from . import lyrixir_remove
+                lyrixir_remove.main(arguments[1:])
 
             case _:
                 pass

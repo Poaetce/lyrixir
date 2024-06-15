@@ -47,6 +47,11 @@ def read_reference_list() -> list[str]:
         return []
 
 
+def write_reference_list(references: list[str]) -> None:
+    with open(list_file_name, 'w') as file:
+        file.write('\n'.join(reference for reference in references) + '\n')
+
+
 def add_to_reference_list(reference: str) -> None:
     # creates the reference list if it doesn't exist
     os.makedirs(os.path.dirname(list_file_name), exist_ok = True)
