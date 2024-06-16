@@ -57,11 +57,16 @@ def pick_song() -> Optional[songs.Song]:
     # gets the reference list
     reference_list: list[str] = config.read_reference_list()
 
-    # picks a random reference
-    random_reference: str = random.choice(reference_list)
+    if reference_list:
+        # picks a random reference
+        random_reference: str = random.choice(reference_list)
 
-    # returns the song object of the random reference
-    return songs.open_song(random_reference)
+        # returns the song object of the random reference
+        return songs.open_song(random_reference)
+
+    # prints error if the reference list is empty
+    else:
+        fancy.print_error("no songs have been added yet")
 
 
 def main() -> None:
