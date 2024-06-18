@@ -33,7 +33,7 @@ if os.path.exists(config_file_name):
 
 
 # gets the path and name of the reference list
-list_file_name = os.path.join(paths.config, 'reference.list')
+list_file_name = os.path.join(paths.data, 'reference.list')
 
 
 def read_reference_list() -> list[str]:
